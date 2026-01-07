@@ -9,8 +9,11 @@ import pickle
 # Download NLTK data
 @st.cache_resource
 def load_nltk():
-    nltk.download('punkt')
-    nltk.download('punkt_tab')
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
+        nltk.download('punkt_tab')
 
 load_nltk()
 
